@@ -10,14 +10,14 @@ int main() {
   std::ofstream outputFile; 
   std::vector<int> numbers {}; 
 
-  for (int i = 0; i < 999; i++) {
+  for (int i = 0; i < 1000; i++) {
     int temp = tenK(mt); 
     numbers.push_back(temp); 
   }
 
   outputFile.open("1kIntegers.txt");
 
-  for (int i = 0; i < numbers.size() - 1; i++) 
+  for (int i = 0; i < numbers.size(); i++) 
     outputFile << numbers[i] << std::endl; 
 
   outputFile.close(); 
