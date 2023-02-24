@@ -8,11 +8,10 @@ const int SIZE = 5;
 
 int main() {
   int tests[SIZE] = {87, 75, 98, 100, 82}; 
-  std::vector<int> vecTest{87, 75, 98, 100, 82}; 
-  int results; 
+  std::vector<int> vecTest{87, 75, 98, 82, 99, 100,}; 
 
   int listResult = searchList(tests, SIZE, 100); 
-  int vecResult = searchVector(vecTest, 99); 
+  int vecResult = searchVector(vecTest, 100); 
 
   printResult(listResult); 
   printResult(vecResult); 
