@@ -1,25 +1,25 @@
-// set first index to 0 
-// set last index to the last subscript in the array 
-// set found to false 
-// set position to -1
-// while found is not true and first is less than or equal to last 
-// set middle to the subscript halfway between array[first]
-// and array[last]
-// if array[middle] equals the desired value
-// set found to true 
-// set position to middle
-// else if array[middle] is greater than the desured value 
-// set last to middle - 1
-// else set first to middle + 1
-// end if
-// end while
-// return position
 #include <iostream>
 #include <vector>
+const int SIZE = 10; 
 
 int binarySearchArray(const int arr[], int value) {
+  int index = 0; 
+  int position = -1; 
+  int lastIndex = SIZE - 1; 
+  bool found = false; 
 
-  return 0; 
+  while(!found && index <= lastIndex) {
+    int middle = lastIndex / 2; 
+    if (value == arr[middle]) {
+      found = true; 
+      position = middle; 
+    } else if (arr[middle] > value) {
+      lastIndex = middle - 1; 
+    } else {
+      lastIndex = middle + 1; 
+    }
+  }
+  return position; 
 }
 
 int binarySearchVector(std::vector<int>& vec, int value) {
@@ -27,7 +27,24 @@ int binarySearchVector(std::vector<int>& vec, int value) {
   return 0; 
 }
 
-int main() {
+void printResult(int result, int value) {
+  if (result == -1)
+    std::cout << value << " not found.\n"; 
+  else {
+    std::cout << value << " found at index "(result + 1) << "." << std::endl; 
+  }
+}
 
+int main() {
+  // Values must first be sorted. 
+  int testArr[SIZE] = {12, 15, 23, 26, 31, 36, 42, 46, 48, 53}; 
+  std::vector<int> testVec{12, 15, 23, 26, 31, 36, 42, 46, 48, 53}; 
+  int value = 42; 
+
+  int arrRes = binarySearchArray(testArr, value); 
+//  int vecRes = binarySearchVector(testVec, value); 
+
+  printResult(arrRes, value); 
+  printResult(vecRes, value); 
   return 0; 
 }
