@@ -3,25 +3,46 @@
 #include <random>
 #include <fstream>
 #include <vector>
+#include <string>
+
+void randGen(std::vector<int>& arr, int min, int max, int nValues) {
+  std::mt19937 mt{ std::random_device{}() }; 
+  std::uniform_int_distribution<> tenK {min,max}; 
+
+  for (int i = 0; i < nValues; i++) {
+    int temp = tenK(mt); 
+    arr.push_back(temp); 
+  }
+}
+
+void writeFile(std::vector<int>& vec, std::string fileName) {
+  std::ofstream outputFile; 
+  outputFile.open(fileName); 
+  for (int i = 0; i < vec.size(); i++)  {
+    outputFile << vec[i] << std::endl; 
+  }
+  outputFile.close(); 
+}
 
 int main() {
-  std::mt19937 mt{ std::random_device{}() }; 
-  std::uniform_int_distribution<> tenK {0,10000}; 
-  std::ofstream outputFile; 
-  std::vector<int> numbers {}; 
+  int min, 
+      max, 
+      nValues; 
+  std::string fileName; 
+  std::vector<int> arr {}; 
 
-  for (int i = 0; i < 100000; i++) {
-    int temp = tenK(mt); 
-    numbers.push_back(temp); 
-  }
+  std::cout << "Enter the number of values to generate: "; 
+  std::cin >> nValues; 
+  std::cout << "Enter the filename you'd like to use: "; 
+  std::cin >> fileName; 
+  std::cout << "Enter the minimum value: "; 
+  std::cin >> min; 
+  std::cout << "Enter the max value: "; 
+  std::cin >> max; 
 
-  std::cout << numbers.size(); 
-  outputFile.open("100kIntegers.txt");
+  randGen(arr, min, max, nValues);
+  writeFile(arr, fileName); 
 
-  for (int i = 0; i < numbers.size(); i++) 
-    outputFile << numbers[i] << std::endl; 
-
-  outputFile.close(); 
   std::cout << "Done" << std::endl; 
   return 0; 
 }
