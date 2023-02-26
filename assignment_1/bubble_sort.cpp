@@ -38,7 +38,7 @@ void bubbleSort(vector<int>& array) {
 
 
 int main() {
-  string fileName = "1kIntegers.txt"; 
+  string fileName = "100kIntegers.txt"; 
   vector<int> arr {}; 
 
   populateArr(arr, fileName); 
