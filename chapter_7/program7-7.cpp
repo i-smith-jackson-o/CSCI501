@@ -1,14 +1,17 @@
+// This program initializes a string array. 
 #include <iostream>
 #include <string>
+using namespace std; 
 
 int main() {
   const int SIZE = 9; 
-  std::string planets[SIZE] = { "Mercury", "Venus", "Earth", "Mars", 
+  string planets[SIZE] = { "Mercury", "Venus", "Earth", "Mars", 
 			   "Jupiter", "Saturn", "Uranus", 
 			   "Neptune", "Pluto (A Dwarf Planet)" }; 
 
-  std::cout << "Here are the planets: \n"; 
+  cout << "Here are the planets: \n"; 
+
   for (int count = 0; count < SIZE; count++)
-    std::cout << planets[count] << std::endl; 
+    cout << planets[count] << std::endl; 
   return 0; 
 }
