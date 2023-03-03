@@ -9,6 +9,7 @@ int main() {
   int hours[NUM_EMPLOYEES]; 
   double payRate[NUM_EMPLOYEES]; 
 
+  // Input the hours worked and the hourly pay rate. 
   cout << "Enter the hours worked by " <<  NUM_EMPLOYEES
        << " employees and their \n"
        << "hourly pay rates.\n"; 
@@ -19,6 +20,8 @@ int main() {
     cout << "Hourly pay rate for employee #" << (index + 1) << ": "; 
     cin >> payRate[index]; 
   }
+
+  // Display each employees gross pay. 
   cout << "Here is the gross pay for each employee:\n"; 
   cout << fixed << showpoint << setprecision(2); 
   for (int index = 0; index < NUM_EMPLOYEES; index++) {
