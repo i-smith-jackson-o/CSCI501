@@ -1,0 +1,112 @@
+There are exactly 92 solutions to the eight queens problem. Your program must print them all in exactly the collowing format
+
+solution 1
+X - - - - - - -
+- - - - X - - - 
+- - - - - - - X
+- - - - - - X -
+- - X - - - - -
+- X - - - - - - 
+- - - X - - - - 
+solution 2
+X - - - - - - -
+- - - - - X - - 
+- - - - - - - X
+- - X - - - - -
+- - - - - - X - 
+- X - - - - - -
+- - - - X - - - 
+solution 3
+... 
+
+
+where a 'X'; means a queen is on that square of the board and a '-' means the square is empty.
+
+There must be a header for each solution counting its number starting with 1 (as shown above.)
+
+Your output must not include any blank lines or blanks at the end of any line.
+
+Note that it is very important that your output be formatted exactly as shown above. In grading your program, 
+its output will be checked by another program (we wrote) that expects as input a solution in this precise format.
+
+Note that the ORDER in which your program identifies and prints the solutions is not important. But if you follow 
+the hints below and start on the first line and at left column (and then proceed in top-down and left-right order) 
+when placing each queen then your first two solutions will match those shown above.
+
+You might want to represent the chessboard using a 2-D array of integers or Boolean variables, e.g., int board[8][8] 
+or bool board[8][8]. This array can be declared in your main() function or as a data member of a class that you write. 
+Initialize the board by filling the array with 0s or false.
+
+A general strategy is to solve the problem by starting with the top row of the chessboard and proceed down the chessboard 
+one row at a time. Only place a single queen in each row. This eliminates the need to check for other queens on the same 
+row (i.e., queens that could attack horizontally). Always start processing a row by attempting to place a queen in the 
+leftmost column and moving to the right as necessary. When placing a queen in a particular row remember that it suffices 
+to only check the rows above you. If the queen is safe, then place it on the board there (board[row][col] = 1; 
+or board[row][col] = true;) and proceed to the next row. If it is not safe, then continue to move one column to the 
+right until you find a safe spot or run out of columns.
+
+Write a recursive function called place_queens() that returns a Boolean value and accepts two arguments, 
+the chessboard and a row index. If your chessboard is a data member of a class, then this will be a 
+member function of that class and you will only need to pass it the row index.
+
+Method 1 (return true/false to let caller know a solution was found)
+
+The way to think about place_queens() is that it attempts to place all the queens from the row you specified and down. 
+If it can place all the queens from that row down, it returns true and leaves the queens on the chessboard. 
+If it couldn't then it returns false and removes all the queens from that row down. This way, after you initialize 
+the chessboard, you may make the single call from your main() routine like this place_queens(board, 0) (for a function) 
+or this q.place_queens(0) (for a member function, assuming q is an instance of the class you defined).
+
+place_queens() always starts by attempting to place a queen in the leftmost column of the row it received as 
+an argument and checking that it is safe from all the queens in the rows above it. If it is not safe, then proceed 
+by moving the queen one column to the right and checking that square. If you get to the right end of the board without 
+finding a safe spot, then return false. If you find a safe spot, then place the queen on the board and call place_queens() 
+again (recursively) asking it to place all the queens on the rows below yours (i.e., passing it the same 
+board it received but incrementing the row index by 1).
+
+Test the return value of that recursive call. Recall that place_queens() will attempt to place all the queens 
+in the rows below and return either false or true based its success. If the return value is true, then print the 
+current board as a solution. If it is false, then there was either no way to place the other queens (below) on 
+the board or the the last of all possible solutions with the higher rows in their current state have been checked 
+and printed. You must try and find another safe column (to the right) in the same row. Move the queen in this row 
+to the right, one column at a time, until you find another square where the queen is safe from all the queens above it. 
+If you find another safe column, place the queen there and make another recursive call to place_queens(). If there are
+no more safe columns in this row, then remove the queen from this row and return false.
+
+Notice that, as described above, place_queens() will ONLY return true from the base-case! This means that the ONLY 
+time a board solution will be printed will be from place_queens() when it has just placed a safe queen on the bottom row. 
+(This should make sense... after all, you can't have a solution unless there is one queen on each row.)
+
+The stopping condition for this recursive algorithm is when you enter place_queens() and the row that you have been 
+passed is greater than 7 (assuming the top row is row 0). Again, this is also the only time that place_queens() will return true.
+
+Method 2 (void place_queens())
+
+This is the same as method 1 except that rather return true or false, return nothing and preform the printing of a 
+found solution in the base case rather than flagging the caller to do it. I think this method was simpler to explain in the lecture video.
+
+The way to think about place_queens() is that it attempts to place all the queens from the row you specified and down. 
+If it finds that there are no more rows to fill then it has succeeded and it will print the current board solution and return. 
+This way, after you initialize the chessboard, you may make the single call from your main() routine like this place_queens(board, 0) 
+(for a function) or this q.place_queens(0) (for a member function, assuming q is an instance of the class you defined).
+
+place_queens() always starts by attempting to place a queen in the leftmost column of the row it received as an argument and checks 
+that it is safe from all the queens in the rows above it (there can not be any other queens on the same row nor below.) If it is not 
+safe, then proceed by moving the queen one column to the right and checking that square. If you get to the right end of the board 
+without finding a safe spot, then remove it and simply return. If you find a safe spot, then place the queen on the board and call 
+place_queens() again (recursively) asking it to place all the queens on the rows below yours (i.e., passing it the same board it 
+received but incrementing the row index by 1).
+
+Recall that place_queens() will attempt to place all the queens in the rows below and return when it has completed 
+(regardless of how many solutions may have been found and printed.) When a recursive call to place_queens() returns, 
+you must continue to try and find other safe columns (to the right) in the same row. Move the queen in this row to the 
+right, one column at a time, until you find another square where the queen is safe from all the queens above it. 
+If you find another safe column, place the queen there and make another recursive call to place_queens(). 
+If there are no more safe columns in this row, then remove the queen from this row and return.
+
+The base-case/stopping condition for this recursive algorithm is when you enter place_queens() and the row 
+that you have been passed is greater than 7 (assuming the top row is row 0). 
+This is also the only time that place_queens() will print a solution.
+
+For what its worth... I found it cleaned up my code considerably to factor the logic 
+that checks if a queen is safe as well as the logic to print the board out of my place_queens() function.
