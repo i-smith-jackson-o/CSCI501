@@ -1,3 +1,4 @@
+// This program demonstrates a two-dimensional array
 #include <iostream>
 #include <iomanip>
 using namespace std; 
@@ -13,6 +14,8 @@ int main() {
   cout << "all the companys divisions.\n"; 
   cout << "Enter the following sales information:\n\n"; 
 
+  // Nested loops to fill the array with quarterly 
+  // sales figures for each division 
   for (div = 0; div < NUM_DIVS; div++) {
     for (qtr = 0; qtr < NUM_QTRS; qtr++) {
       cout << "Division " << (div + 1); 
@@ -21,10 +24,13 @@ int main() {
     }
     cout << endl; 
   }
+
+  // Nested loops to add all the elments. 
   for (div = 0; div < NUM_DIVS; div++) {
     for (qtr = 0; qtr < NUM_QTRS; qtr++) 
       totalSales += sales[div][qtr]; 
     }
+
     cout << fixed << showpoint << setprecision(2); 
     cout << "The total sales for the company are: $"; 
     cout << totalSales << endl; 

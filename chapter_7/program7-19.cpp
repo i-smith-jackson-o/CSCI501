@@ -21,7 +21,6 @@ int main() {
   // Display the resulting values. 
   cout << "After calling doubleArray the values are:\n"; 
   showValues(set, ARRAY_SIZE); 
-
   return 0; 
 }
 
@@ -35,6 +34,3 @@ void showValues(int nums[], int size) {
     cout << nums[index] << " "; 
   cout << endl; 
 }
-
-
-
