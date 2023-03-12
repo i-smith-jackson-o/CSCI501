@@ -18,7 +18,7 @@ void displayArr(int[], int);
 int main() {
   int bubbleExch, 
       selectionExch, 
-      size = 50; 
+      size = 20; 
 
   int arrOne[size]; 
   int arrTwo[size]; 
