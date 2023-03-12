@@ -13,7 +13,9 @@
 // Function prototype
 int linearSearch(int[], int, int); 
 int binarySearch(int[], int, int); 
+int inputValSearch(int[], int, int); 
 void insertionSort(int[], int); 
+int getInput(int[], int); 
 
 int main() {
   int arr[33] = { 12, 35, 46, 76, 35, 76, 36, 65, 35, 86, 91, 
@@ -23,9 +25,7 @@ int main() {
   int size = sizeof(arr) / sizeof(arr[0]); 
   int linearA, linearB, binary, v; 
 
-  std::cout << "Enter the value to search for: "; 
-  std::cin >> v; 
-
+  v = getInput(arr, size); 
 
   std::cout << "Sorting the array..." << std::endl; 
   insertionSort(arr, size); 
@@ -97,6 +97,29 @@ int binarySearch(int arr[], int size, int value) {
   return comp; 
 }
 
-int inputValSearch(int arr[], int size) {
+int inputValSearch(int arr[], int value, int size) {
+  int i = 0, 
+      position = -1; 
+  bool found = false; 
 
+  while (i < size && !found) {
+    if (arr[i] == value) {
+      found = true; 
+      position = i; 
+    }
+    i++; 
+  }
+  return position; 
+}
+
+int getInput(int arr[], int size) {
+  int value; 
+  std::cout << "Enter a number to search for: "; 
+  std::cin >> value; 
+
+  while (inputValSearch(arr, value, size) < 0) {
+    std::cout << "Invalid Input - Try again: "; 
+    std::cin >> value; 
+  }
+  return value; 
 }
