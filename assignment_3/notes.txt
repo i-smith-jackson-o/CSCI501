@@ -1,0 +1,18 @@
+Write two short programs that inplement the recursive Quicksort and Merge Sort algorithms. 
+Each of these programs will read up to 1000 integers, sort them, and then print them 
+in a formatted fashion. 
+
+Input: 
+Each program must read from stdin using input redirection
+Must properly handle cases where there are zero or more lines of text, 
+each containing zero or more integers numbers separated by whitespace. 
+Assume test data will only contain valid integer values. 
+
+Output: 
+8 sorted numbers per line, right aligned in columns. Use setw to pad numbers with 
+leading spaces. Do not print a space after the last number on the line and the 
+newline characters. Do not print blank lines. 
+
+Hints: 
+Start by working on one of the files, making sure you can read and 
+print the unsorted input, then implement the sorting algorithm. 
