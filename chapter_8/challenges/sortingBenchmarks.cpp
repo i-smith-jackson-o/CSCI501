@@ -16,7 +16,10 @@ void copyArr(int[], int[], int);
 void displayArr(int[], int); 
 
 int main() {
-  int size = 20; 
+  int bubbleExch, 
+      selectionExch, 
+      size = 50; 
+
   int arrOne[size]; 
   int arrTwo[size]; 
 
@@ -25,22 +28,58 @@ int main() {
   displayArr(arrOne, size); 
   displayArr(arrTwo, size); 
 
-  bubbleSort(arrOne, size); 
-  selectionSort(arrTwo, size); 
+  bubbleExch = bubbleSort(arrOne, size); 
+  selectionExch = selectionSort(arrTwo, size); 
+
+  std::cout << bubbleExch << " exchanges to bubbleSort randomly ";  
+  std::cout << "generated array of " << size << " values.\n"; 
+
+  std::cout << selectionExch << " exchanges to selectionSort randomly ";  
+  std::cout << "generated array of " << size << " values.\n"; 
 
   return 0; 
 }
 
 
 int bubbleSort(int arr[], int size) {
-  int exch = 0; 
+  int temp, 
+      exch = 0; 
+  bool swap; 
 
+  do {
+    swap = false; 
+    for (int i = 0; i < (size - 1); i++) {
+      if (arr[i] > arr[i+1]) {
+	temp = arr[i]; 
+	arr[i] = arr[i + 1]; 
+	arr[i + 1] = temp; 
+	swap = true; 
+	exch++; 
+      }
+    }
+  } while (swap); 
   return exch; 
 }
 
 int selectionSort(int arr[], int size) {
-  int exch = 0; 
+  int exch = 0, 
+      startScan, 
+      minIndex, 
+      minValue; 
 
+  for (startScan = 0; startScan < (size - 1); startScan++) {
+    minIndex = startScan; 
+    minValue = arr[startScan]; 
+    for (int index = startScan + 1; index < size; index++) {
+      if (arr[index] < minValue) {
+	minValue = arr[index]; 
+	minIndex = index; 
+	exch++;
+      }
+    }
+    arr[minIndex] = arr[startScan]; 
+    arr[startScan] = minValue; 
+  }
   return exch; 
 }
 
@@ -62,15 +101,16 @@ void copyArr(int arrOne[], int arrTwo[], int size) {
 }
 
 void displayArr(int arr[], int size) {
-  for (int i = 0; i < size; i++) {
+  int n = 10; 
+
+  std::cout << "Displaying first " << n << " and last ";
+  std::cout << n << " values of array: \n"; 
+  for (int i = 0; i < n; i++) {
+    std::cout << arr[i] << " "; 
+  }
+  std::cout << std::endl; 
+  for (int i = size - n; i < size; i++) {
     std::cout << arr[i] << " "; 
   }
   std::cout << std::endl; 
 }
-
-
-
-
-
-
-
